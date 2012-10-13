@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Easy Filter
-Plugin URI: http://wp-plugins.xiidea.net/ez-filter
+Plugin URI: http://wp-plugins.xiidea.net/easy-filter
 Description: Easy Filter Improve The Filter option of list pages(posts/pages/any custom post types)
 Version: 1.0
 Author: Roni Saha
