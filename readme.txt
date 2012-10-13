@@ -1,6 +1,6 @@
 === Easy Filter ===
 
-Contributors: (ronisaha)
+Contributors: ronisaha
 Tags: post, post type, filter, post type filter, custom filter, taxonomy filter
 Requires at least: 3.2
 Tested up to: 3.4
