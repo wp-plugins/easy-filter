@@ -21,17 +21,18 @@ class WP
     private $_plugin_domain='';
     private $_plugin_file='';
 
-    function __construct ( &$wpdb, $pagenow, $typenow = "", $plugin_file = "", $plugin_domain = "plugin_option" ){
-        $this->_db = &$wpdb;
+    function __construct ( $plugin_file = "", $plugin_domain = "plugin_option" ){
+        global $wpdb,$pagenow,$typenow;
+        $this->_db = $wpdb;
         $this->_pagenow = $pagenow;
-        $this->_typenow = $typenow === ""?'post':$typenow;;
+        $this->_typenow = $typenow === ""?'post':$typenow;
         $this->_plugin_domain = $plugin_domain;
         $this->_plugin_file = $plugin_file;
     }
 
-    public static function getInstance (&$db = NULL, $pagenow = "", $typenow = "", $plugin_file = "", $plugin_domain = "plugin_option" ) {
+    public static function getInstance ($plugin_file = "", $plugin_domain = "plugin_option" ) {
         if(!isset(self::$_instance)) {
-            self::$_instance = new WP ( $db, $pagenow, $typenow, $plugin_file, $plugin_domain );
+            self::$_instance = new WP ( $plugin_file, $plugin_domain );
         }
         return self::$_instance;
     }
