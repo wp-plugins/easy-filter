@@ -46,8 +46,10 @@ May Be There is no taxonomy found for the **Post Type**
 1. Easy Filter Settings Page.
 
 == Changelog ==
+= 1.01 =
+* Fixed Broken Functionality
+
 = 1.0 =
 * First release
 
-= 1.01 =
-* Fixed Broken Functionality
+
