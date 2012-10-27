@@ -17,13 +17,14 @@ define('EZ_FILTER_OPTION','ez_filter_options');
 include_once dirname(__FILE__) . '/Classes/Loader.php';
 
 function getWpObject(){
-    return Classes\WP::getInstance(__FILE__,EZ_FILTER_OPTION);
+    global $wpdb,$pagenow,$typenow;
+    return Classes\WP::getInstance(__FILE__, array('wpdb'=>$wpdb,'pagenow'=>$pagenow,'typenow'=>$typenow));
 }
 
 //instantiate the loader
 $loader = Classes\Loader::getInstance(__FILE__);
 
-spl_autoload_register(array($loader,'load'));
+spl_autoload_register(array(&$loader,'load'));
 
 $ez_filter= new Classes\EzFilter($loader);
 $ez_filter->run();
