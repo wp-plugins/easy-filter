@@ -6,7 +6,7 @@ Requires at least: 3.2
 Tested up to: 3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Stable tag: 1.1
+Stable tag: 1.2
 Easy Filter Improve The Filter option of list pages(posts/pages/any custom post types).
 
 == Description ==
