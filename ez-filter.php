@@ -3,7 +3,7 @@
 Plugin Name: Easy Filter
 Plugin URI: http://wp-plugins.xiidea.net/easy-filter
 Easy Filter Improve The Filter option of list pages(posts/pages/any custom post types)
-Version: 1.01
+Version: 1.1
 Author: Roni Saha
 Author URI: http://helpful-roni.com
 */
