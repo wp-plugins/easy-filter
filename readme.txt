@@ -46,6 +46,7 @@ May Be There is no taxonomy found for the **Post Type**
 1. Easy Filter Settings Page.
 
 == Changelog ==
+= 1.2 =
 = 1.1 =
 * Comam seperated Taxonomy Filter Added For Multi-word Taxonomy Value
 
