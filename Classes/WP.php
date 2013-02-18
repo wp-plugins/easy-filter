@@ -16,6 +16,7 @@ class WP
     , 'author' => 'Author'
     , 'date_range' => 'Date Range'
     , 'taxonomy' => 'Taxonomy'
+    , 'thumbnail'  => 'Featured Image'
     );
 
     private $_plugin_domain = '';
@@ -101,8 +102,12 @@ class WP
     {
         $settings = $this->getSettings($this->_typenow);
 
-        if (isset($settings['style']) && $this->hasSelectiveTextInput($settings['style'])) {
+        if(in_array('thumbnail',$settings['config'])){
             return true;
+        }
+
+        if (isset($settings['style']) && $this->hasSelectiveTextInput($settings['style'])) {
+            return TRUE;
         }
 
         if (!($this->_pagenow == 'edit.php' && isset($_GET['meta_key']) &&
@@ -112,6 +117,7 @@ class WP
         }
         return in_array('taxonomy', $settings['config']) && isset($settings['taxonomy']) && $settings['taxonomy'] == 'combo';
     }
+
 
     public function isWhereParsingNeeded()
     {

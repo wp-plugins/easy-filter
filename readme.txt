@@ -6,7 +6,7 @@ Requires at least: 3.2
 Tested up to: 3.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Stable tag: 1.2
+Stable tag: 1.3
 Easy Filter Improve The Filter option of list pages(posts/pages/any custom post types).
 
 == Description ==
@@ -46,6 +46,9 @@ May Be There is no taxonomy found for the **Post Type**
 1. Easy Filter Settings Page.
 
 == Changelog ==
+= 1.3 =
+* New Filter Option Added
+
 = 1.2 =
 = 1.1 =
 * Comam seperated Taxonomy Filter Added For Multi-word Taxonomy Value
