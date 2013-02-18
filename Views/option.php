@@ -3,7 +3,7 @@
     <h2><?php _e('Easy Filter Settings') ?></h2>
 
     <?php if( $option_updated ): ?>
-        <div class="updated below-h2" id="message"><p><?php _e('Settings saved') ?>.</p></div>;
+        <div class="updated below-h2" id="message"><p><?php _e('Settings saved') ?>.</p></div>
      <?php endif; ?>
 
     <form action="" method="post">

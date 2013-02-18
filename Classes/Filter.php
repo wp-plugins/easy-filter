@@ -11,6 +11,10 @@ class Filter
 
         $settings = $WP->getSettings($WP->typenow);
 
+        if($this->_isThumbnailFilterNeeded($settings['config']) && isset($_GET['has_thumbnail']) && $_GET['has_thumbnail'] == 'true'){
+            $query->query_vars['meta_key'] = '_thumbnail_id';
+        }
+
         if (isset($settings['style']) && $WP->hasSelectiveTextInput($settings['style'])) {
             foreach ($settings['style'] as $key => $type) {
                 if ($type === 'text' && isset($_GET[$key]) && $_GET[$key] != '') {
@@ -22,6 +26,7 @@ class Filter
             $taxonomy = get_taxonomy($_GET['meta_key']);
             $query->query_vars[$taxonomy->query_var] = $this->get_term_by_name($_GET['meta_value'], $_GET['meta_key']);
         }
+
         return $query;
     }
 
@@ -76,6 +81,11 @@ class Filter
         if ($this->_isTaxonomyFilterNeeded($settings['config'])) {
             $this->_CreateTaxonomyInputs($WP, $settings);
         }
+
+        if ($this->_isThumbnailFilterNeeded($settings['config'])) {
+            $this->_CreateThumbnailInputs($WP, $settings);
+        }
+
         if ($WP->removeDefaultFilter() || $date_range_input) {
             printf('<span class="ex-filter" id="ex-filter-setting-input">%s</span>', json_encode($settings));
         }
@@ -88,6 +98,11 @@ class Filter
         return in_array('author', $config);
     }
 
+    private function _isThumbnailFilterNeeded($config)
+    {
+        return in_array('thumbnail', $config);
+    }
+
     private function _isDateFilterNeeded($config)
     {
         return in_array('date_range', $config);
@@ -96,6 +111,16 @@ class Filter
     private function _isTaxonomyFilterNeeded($config)
     {
         return in_array('taxonomy', $config);
+    }
+
+    private function _CreateThumbnailInputs(WP $WP, $settings)
+    {
+        $oPostType=get_post_type_object($WP->typenow);
+
+        $value = isset($_GET['has_thumbnail']) ?  $_GET['has_thumbnail'] : '';
+
+        printf('<label><input class="ex-filter-thumbnail" type="checkbox" name="has_thumbnail" value="true" %1$s id="filter-post-type-thumbnail" /> &nbsp;Hide "<strong>%2$s</strong>" Without Featured image &nbsp; </label>',($value ==='true')?'checked="checked"' : '',$oPostType->label);
+
     }
 
     private function _CreateAuthorInput(WP $WP)
