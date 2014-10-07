@@ -1,7 +1,7 @@
 === Easy Filter ===
 
 Contributors: ronisaha
-Tags: post, post type, filter, post type filter, custom filter, taxonomy filter
+Tags: post, post type, filter, post type filter, custom filter, taxonomy filter, admin post filter, admin taxonomy filter
 Requires at least: 3.2
 Tested up to: 4.0
 License: GPLv2 or later
