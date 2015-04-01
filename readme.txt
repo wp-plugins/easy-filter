@@ -3,10 +3,10 @@
 Contributors: ronisaha
 Tags: post, post type, filter, post type filter, custom filter, taxonomy filter, admin post filter, admin taxonomy filter
 Requires at least: 3.2
-Tested up to: 4.0
+Tested up to: 4.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Stable tag: 1.3
+Stable tag: 1.4
 Easy Filter Improve The Filter option of list pages(posts/pages/any custom post types).
 
 == Description ==
@@ -46,6 +46,10 @@ May Be There is no taxonomy found for the **Post Type**
 1. Easy Filter Settings Page.
 
 == Changelog ==
+= 1.4 =
+* Bug fixes
+* Also applied to media library
+
 = 1.3 =
 * New Filter Option Added
 

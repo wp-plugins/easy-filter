@@ -56,6 +56,7 @@ class Admin
     {
         $page = add_submenu_page('options-general.php', 'Settings', 'Easy Filter', 'manage_options', 'ez-filter', array(&$this, 'ez_filter_option'));
         add_action('admin_print_styles-' . $page, array(&$this, 'enqueue_admin_option_assets'));
+        add_action('admin_print_styles-upload.php', array(&$this, 'enqueue_manage_post_assets'));
         add_action('admin_print_styles-edit.php', array(&$this, 'enqueue_manage_post_assets'));
     }
 
