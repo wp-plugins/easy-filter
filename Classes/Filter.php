@@ -82,12 +82,12 @@ class Filter
             $this->_CreateTaxonomyInputs($WP, $settings);
         }
 
-        if ($this->_isThumbnailFilterNeeded($settings['config'])) {
+        if ($WP->pagenow !== 'upload.php' && $this->_isThumbnailFilterNeeded($settings['config'])) {
             $this->_CreateThumbnailInputs($WP, $settings);
         }
 
         if ($WP->removeDefaultFilter() || $date_range_input) {
-            printf('<span class="ex-filter" id="ex-filter-setting-input">%s</span>', json_encode($settings));
+            printf('<span class="ex-filter" style="display: none" id="ex-filter-setting-input">%s</span>', json_encode($settings));
         }
 
         return true;
@@ -150,14 +150,15 @@ class Filter
 
     private function _CreateTaxonomyInputs(WP $WP, $settings)
     {
+        $TaxonomyStyle = isset($settings['taxonomy']) ? $settings['taxonomy'] : 'combo';
 
-        $TaxonomyStyle = isset($settings['taxonomy']) ? ucfirst($settings['taxonomy']) : 'Combo';
-        $functionName = "_CreateTaxonomy{$TaxonomyStyle}Input";
-
-        try {
-            $this->$functionName($WP, $settings);
-        } catch (\Exception $e) {
-
+        switch($TaxonomyStyle){
+            case 'combo' :
+                $this->_CreateTaxonomyComboInput($WP, $settings);
+                break;
+            case 'selective' :
+                $this->_CreateTaxonomySelectiveInput($WP, $settings);
+                break;
         }
     }
 
@@ -204,8 +205,14 @@ class Filter
 
         foreach ($settings['taxonomies-details'] as $meta_key) {
             $input_style = isset($settings['style'][$meta_key]) ? $settings['style'][$meta_key] : 'dropdown';
-            $function = "_CreateSelective" . ucfirst($input_style) . "Input";
-            $this->$function($WP, $meta_key);
+            switch($input_style){
+                case 'dropdown' :
+                    $this->_CreateSelectiveDropdownInput($WP, $meta_key);
+                    break;
+                case 'text' :
+                    $this->_CreateSelectiveTextInput($WP, $meta_key);
+                    break;
+            }
         }
         return true;
     }
@@ -220,7 +227,7 @@ class Filter
         foreach ($terms as $term) {
             $taxonomy_type_group .= sprintf('<option value="%1$s" %2$s >%3$s</option>'
                 , $term->slug
-                , $_GET[$tax_obj->query_var] == $term->slug ? 'selected="selected"' : ''
+                , $this->getSelectedOption($tax_obj, $term)
                 , $term->name
             );
         }
@@ -244,6 +251,16 @@ class Filter
             , esc_attr($tax_slug)
             , esc_attr($meta_value)
             , esc_attr(__('Search By') . " " . $tax_obj->labels->name));
+    }
+
+    /**
+     * @param $tax_obj
+     * @param $term
+     * @return string
+     */
+    private function getSelectedOption($tax_obj, $term)
+    {
+        return (isset($_GET[$tax_obj->query_var]) && $_GET[$tax_obj->query_var] == $term->slug) ? 'selected="selected"' : '';
     }
 
 }
