@@ -14,6 +14,10 @@
     width: 150px;
 }
 
+#posts-filter div.actions select[name="meta_key"]{
+    float: none;
+}
+
 #posts-filter div.actions input.date-picker-input{
     width: 80px;
 }
